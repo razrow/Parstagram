@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -76,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (e == null) {
                     Log.i(TAG, "Signup succeeded, let's login");
                     loginUser(newUsername,newPassword);
+                    Toast.makeText(LoginActivity.this, "Signed in as " + newUsername,Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e(TAG,"something went wrong with signup",e);
                 }

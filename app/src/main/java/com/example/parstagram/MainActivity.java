@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private Button picBtn;
     private Button submitBtn;
     private ImageView ivPostPic;
+    private Button logoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         picBtn = findViewById(R.id.picBtn);
         submitBtn = findViewById(R.id.submitBtn);
         ivPostPic = findViewById(R.id.ivPostPic);
+        logoutBtn = findViewById(R.id.logoutBtn);
 
         picBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +73,19 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description,currentUser, photoFile);
+            }
+        });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Logout button clicked");
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(i);
+                Toast.makeText(MainActivity.this, "Signed Out", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }

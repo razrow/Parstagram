@@ -40,4 +40,14 @@
         android:layout_marginTop="5dp"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/submitBtn"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="3dp"
+        android:text="Logout" />
+
 </RelativeLayout>
