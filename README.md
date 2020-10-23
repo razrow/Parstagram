@@ -32,6 +32,8 @@ Here's a walkthrough of implemented user stories:
 
 <img src='https://github.com/razrow/Parstagram/blob/master/parstagram.gif' title='parstagram.gif' width='' alt='Video Walkthrough' />
 
+<img src='https://github.com/razrow/Parstagram/blob/master/parstagramPersists.gif' title='parstagramPersists.gif' width='' alt='Video Walkthrough' />
+
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
