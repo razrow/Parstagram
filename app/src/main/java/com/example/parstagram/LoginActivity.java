@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -19,6 +20,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etUsername;
     private EditText etPassword;
     private Button loginBtn;
+
+    private EditText etNewUsername;
+    private EditText etNewPassword;
+    private Button signupBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         loginBtn = findViewById(R.id.loginBtn);
 
+        etNewUsername = findViewById(R.id.etNewUsername);
+        etNewPassword = findViewById(R.id.etNewPassword);
+        signupBtn = findViewById(R.id.signupBtn);
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,6 +49,36 @@ public class LoginActivity extends AppCompatActivity {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 loginUser(username, password);
+            }
+        });
+
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "onClick signup button");
+                String newUsername = etNewUsername.getText().toString();
+                String newPassword = etNewPassword.getText().toString();
+                signupUser(newUsername,newPassword);
+            }
+        });
+    }
+
+    private void signupUser(final String newUsername, final String newPassword) {
+        Log.i(TAG, "Attempt to signup a new user " + etNewUsername);
+        // Create the ParseUser
+        ParseUser user = new ParseUser();
+        // Set core properties
+        user.setUsername(newUsername);
+        user.setPassword(newPassword);
+        // Invoke signUpInBackground
+        user.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    Log.i(TAG, "Signup succeeded, let's login");
+                    loginUser(newUsername,newPassword);
+                } else {
+                    Log.e(TAG,"something went wrong with signup",e);
+                }
             }
         });
     }
