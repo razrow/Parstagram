@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private Button submitBtn;
     private ImageView ivPostPic;
     private Button logoutBtn;
+    private ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         ivPostPic = findViewById(R.id.ivPostPic);
         logoutBtn = findViewById(R.id.logoutBtn);
 
+        // on some click or some loading we need to wait for...
+        pb = (ProgressBar) findViewById(R.id.pbLoading);
+
         picBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pb.setVisibility(ProgressBar.VISIBLE);
                 String description = etDescription.getText().toString();
                 if(description.isEmpty()){
                     Toast.makeText(MainActivity.this, "Description cannot be empty",Toast.LENGTH_SHORT).show();
@@ -73,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description,currentUser, photoFile);
+                // run a background job and once complete
+                pb.setVisibility(ProgressBar.INVISIBLE);
             }
         });
 
