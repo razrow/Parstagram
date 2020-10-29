@@ -1,8 +1,10 @@
 package com.example.parstagram;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private File photoFile;
+    private BottomNavigationView bottomNavigationView;
     public String photoFileName = "photo.jpg";
     private EditText etDescription;
     private Button picBtn;
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         submitBtn = findViewById(R.id.submitBtn);
         ivPostPic = findViewById(R.id.ivPostPic);
         logoutBtn = findViewById(R.id.logoutBtn);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // on some click or some loading we need to wait for...
         pb = (ProgressBar) findViewById(R.id.pbLoading);
@@ -81,6 +87,31 @@ public class MainActivity extends AppCompatActivity {
                 savePost(description,currentUser, photoFile);
                 // run a background job and once complete
                 pb.setVisibility(ProgressBar.INVISIBLE);
+            }
+        });
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment fragment;
+                switch (menuItem.getItemId()) {
+                    case R.id.action_home:
+                        // do something here
+                        Log.i(TAG, "action_home clicked");
+                        Toast.makeText(MainActivity.this,"home clicked",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.action_compose:
+                        // do something here
+                        Log.i(TAG, "action_compose clicked");
+                        Toast.makeText(MainActivity.this,"compose clicked",Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.action_profile:
+                        // do something here
+                        Log.i(TAG, "action_profile clicked");
+                        Toast.makeText(MainActivity.this,"profile clicked",Toast.LENGTH_SHORT).show();
+                        return true;
+                    default: return true;
+                }
             }
         });
 
