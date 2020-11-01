@@ -40,14 +40,12 @@ The following **optional** functionality is completed:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/razrow/Parstagram/blob/master/parstagram.gif' title='parstagram.gif' width='' alt='Video Walkthrough' />
-
-<img src='https://github.com/razrow/Parstagram/blob/master/parstagramPersists.gif' title='parstagramPersists.gif' width='' alt='Video Walkthrough' />
+<img src='https://github.com/razrow/Parstagram/blob/Parstagram2/parstagramFeed.gif' title='parstagram.gif' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
-I am okay with how this turned out. I was a bit bummed because I tried messing with the Progress Bar to get it to load after clicking to submit a post, but it just did not really work out. I was a bit confused on exactly what the expectations were for this app, but I completed the required stories and figured the rest will make sense eventually.
+This is one of the few I think I would actually go back and work on. I am really happy with it and think I will try some of the extra stories perhaps.
 
 ## License
 
